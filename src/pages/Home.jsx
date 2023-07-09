@@ -40,21 +40,7 @@ const Home = () => {
     const handleSubmission = (e) => {
         e.preventDefault();
 
-        // remove here
-        const fetchEnvironmentId = async (siteId) => {
-            const resp = await fetch(
-                `${KinstaAPIUrl}/sites/${siteId}/environments`,
-                {
-                    method: 'GET',
-                    headers
-                }
-            );
-
-            const data = await resp.json();
-            let envId = data.site.environments[0].id;
-            navigate(`/tools/${envId}`)
-        }
-        fetchEnvironmentId(selectedSiteId);
+        // fetch environment ID and navigate to tools page
     }
 
     return (

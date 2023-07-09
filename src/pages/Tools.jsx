@@ -24,97 +24,23 @@ const Tools = () => {
     }, [])
 
     const clearCache = async () => {
-        const resp = await fetch(
-            `${KinstaAPIUrl}/sites/tools/clear-cache`,
-            {
-                method: 'POST',
-                headers,
-                body: JSON.stringify({
-                    environment_id: envId
-                })
-            }
-        );
-
-        const data = await resp.json();
-        navigate(`/operations/${data.operation_id}`);
-        console.log(data);
+        // clear site cache
     }
 
     const scheduleClearCache = async (e) => {
         e.preventDefault();
 
-        let year = new Date(scheduleDate).getFullYear();
-        let month = new Date(scheduleDate).getMonth();
-        let day = new Date(scheduleDate).getDate();
-
-        let timeArray = scheduleTime.split(":");
-        let hour = parseInt(timeArray[0]);
-        let minute = parseInt(timeArray[1]);
-
-        const twentyFourHours = 86400000;
-        const now = new Date();
-
-        let eta_ms = new Date(year, month, day, hour, minute, 0, 0).getTime() - now;
-        console.log(eta_ms);
-
-        if (eta_ms < 0) {
-            eta_ms += twentyFourHours;
-        }
-
-        let date = `${day}-${month + 1}-${year}`;
-        let time = `${hour}:${minute}`;
-
-        setTimeout(function () {
-            clearCache();
-        }, eta_ms);
-        navigate(`/schedule/${date}/${time}`);
+        // schedule cache clear
     }
 
     const restartEngine = async () => {
-        const resp = await fetch(
-            `${KinstaAPIUrl}/sites/tools/restart-php`,
-            {
-                method: 'POST',
-                headers,
-                body: JSON.stringify({
-                    environment_id: envId
-                })
-            }
-        );
-
-        const data = await resp.json();
-        navigate(`/operations/${data.operation_id}`);
-        console.log(data);
+        // restart PHP engine
     }
 
     const schedulePhpEngineRestart = async (e) => {
         e.preventDefault();
 
-        let year = new Date(scheduleDate).getFullYear();
-        let month = new Date(scheduleDate).getMonth();
-        let day = new Date(scheduleDate).getDate();
-
-        let timeArray = scheduleTime.split(":");
-        let hour = parseInt(timeArray[0]);
-        let minute = parseInt(timeArray[1]);
-
-        const twentyFourHours = 86400000;
-        const now = new Date();
-
-        let eta_ms = new Date(year, month, day, hour, minute, 0, 0).getTime() - now;
-        console.log(eta_ms);
-
-        if (eta_ms < 0) {
-            eta_ms += twentyFourHours;
-        }
-
-        let date = `${day}-${month + 1}-${year}`;
-        let time = `${hour}:${minute}`;
-
-        setTimeout(function () {
-            restartEngine();
-        }, eta_ms);
-        navigate(`/schedule/${date}/${time}`);
+        // schedule PHP engine restart
     }
 
     const showCacheModal = () => {
