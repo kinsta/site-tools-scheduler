@@ -1,4 +1,4 @@
-![image](/public/schedule-kinsta-api.jpg)
+![image](/public/schedule-kinsta-api.jpg).
 
 # How To Restart PHP and Schedule Tasks With Kinsta API
 
