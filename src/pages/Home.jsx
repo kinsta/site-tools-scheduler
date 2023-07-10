@@ -40,7 +40,6 @@ const Home = () => {
     const handleSubmission = (e) => {
         e.preventDefault();
 
-        // remove here
         const fetchEnvironmentId = async (siteId) => {
             const resp = await fetch(
                 `${KinstaAPIUrl}/sites/${siteId}/environments`,

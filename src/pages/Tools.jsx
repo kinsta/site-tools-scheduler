@@ -8,13 +8,16 @@ const Tools = () => {
     const { envId } = useParams();
     const navigate = useNavigate();
 
+    // declare site refs
     const cacheModalRef = useRef(null);
     const phpEngineModalRef = useRef(null);
     const container = useRef(null);
 
+    // states
     const [scheduleDate, setScheduleDate] = useState('');
     const [scheduleTime, setScheduleTime] = useState('');
 
+    // const for Kinsta API
     const KinstaAPIUrl = 'https://api.kinsta.com/v2';
     const headers = useMemo(() => {
         return {
@@ -23,6 +26,7 @@ const Tools = () => {
         }
     }, [])
 
+    // clear site cache
     const clearCache = async () => {
         const resp = await fetch(
             `${KinstaAPIUrl}/sites/tools/clear-cache`,
@@ -40,6 +44,7 @@ const Tools = () => {
         console.log(data);
     }
 
+    // schedule site cache
     const scheduleClearCache = async (e) => {
         e.preventDefault();
 
@@ -51,25 +56,26 @@ const Tools = () => {
         let hour = parseInt(timeArray[0]);
         let minute = parseInt(timeArray[1]);
 
-        const twentyFourHours = 86400000;
-        const now = new Date();
 
+        const now = new Date();
         let eta_ms = new Date(year, month, day, hour, minute, 0, 0).getTime() - now;
         console.log(eta_ms);
 
-        if (eta_ms < 0) {
-            eta_ms += twentyFourHours;
-        }
-
-        let date = `${day}-${month + 1}-${year}`;
-        let time = `${hour}:${minute}`;
+        // const twentyFourHours = 86400000;
+        // if (eta_ms < 0) {
+        //     eta_ms += twentyFourHours;
+        // }
 
         setTimeout(function () {
             clearCache();
         }, eta_ms);
+
+        let date = `${day}-${month + 1}-${year}`;
+        let time = `${hour}:${minute}`;
         navigate(`/schedule/${date}/${time}`);
     }
 
+    // restart PHP engine
     const restartEngine = async () => {
         const resp = await fetch(
             `${KinstaAPIUrl}/sites/tools/restart-php`,
@@ -87,36 +93,43 @@ const Tools = () => {
         console.log(data);
     }
 
+    // schedule PHP enfine restart
     const schedulePhpEngineRestart = async (e) => {
+        // prevent reload from form
         e.preventDefault();
 
+        // get params from date
         let year = new Date(scheduleDate).getFullYear();
         let month = new Date(scheduleDate).getMonth();
         let day = new Date(scheduleDate).getDate();
 
+        // get minute and second
         let timeArray = scheduleTime.split(":");
         let hour = parseInt(timeArray[0]);
         let minute = parseInt(timeArray[1]);
 
-        const twentyFourHours = 86400000;
+        // convert to milliseconds
         const now = new Date();
-
         let eta_ms = new Date(year, month, day, hour, minute, 0, 0).getTime() - now;
         console.log(eta_ms);
 
-        if (eta_ms < 0) {
-            eta_ms += twentyFourHours;
-        }
+        // const twentyFourHours = 86400000;
+        // if (eta_ms < 0) {
+        //     eta_ms += twentyFourHours;
+        // }
 
-        let date = `${day}-${month + 1}-${year}`;
-        let time = `${hour}:${minute}`;
-
+        // trigger function at set time
         setTimeout(function () {
             restartEngine();
         }, eta_ms);
+
+        // wait till set time out is ready to run
+        let date = `${day}-${month + 1}-${year}`;
+        let time = `${hour}:${minute}`;
         navigate(`/schedule/${date}/${time}`);
     }
 
+    // modal toggle
     const showCacheModal = () => {
         container.current.classList.add('overlay');
         cacheModalRef.current.style.display = 'block';
