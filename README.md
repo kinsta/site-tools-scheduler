@@ -1,6 +1,6 @@
-![image](/public/schedule-kinsta-api.jpg).
+![image](/public/schedule-kinsta-api.jpg)
 
-# How To Restart PHP and Schedule Tasks With Kinsta API
+# Schedule Your Maintenance Tasks with Kinsta API (Clear cache, restart PHP engine)
 
 Learn how to use the Kinsta API to make HTTP requests using the Fetch API in a React application.
 
@@ -13,6 +13,14 @@ Read the [full article](https://kinsta.com/blog/restart-php-api/).
 ### Dependency Management
 
 Kinsta automatically installs dependencies defined in your `package.json` file during the deployment process.
+
+### Environment Variables
+When deploying, add the Kinsta API key and your company's ID as environment variables using the following variable name:
+
+```
+REACT_APP_KINSTA_COMPANY_ID = 'YOUR_COMPANY_ID' 
+REACT_APP_KINSTA_API_KEY = 'YOUR_API_KEY'
+```
 
 ### Port
 
