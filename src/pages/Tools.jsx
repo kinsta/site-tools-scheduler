@@ -143,7 +143,7 @@ const Tools = () => {
             </div>
             <div className="modal" ref={phpEngineModalRef}>
                 <div className="modal-container">
-                    <h1 className="title">Schedule Site Cache</h1>
+                    <h1 className="title">Schedule PHP Engine Restart</h1>
                     <div className="btn-2" onClick={closePhpEngineModal}>close</div>
                     <form onSubmit={schedulePhpEngineRestart}>
                         <div className="input-flex">
