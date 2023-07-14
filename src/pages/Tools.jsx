@@ -154,13 +154,15 @@ const Tools = () => {
         <>
             <div className="app-container" ref={container}>
                 <Header />
+                <p className="description-head">
+                    This is a React app that uses the Kinsta API to perform and schedule your site's maintenance tasks.
+                </p>
                 <div className="flex-container">
                     <div className="sm-container">
                         <div className="sm-container-title">
-                            <h1 className="title">Site Cache</h1>
+                            <h1 className="title">Clear Site Cache</h1>
                             <p className="description">
-                                This is a React app that uses the Kinsta API to perform site tools (clear cache and restart PHP engine), without needing to access MyKinsta dashboard.
-                            </p>
+                                Clear your site's cache now or schedule a specific date and time.                            </p>
                             <div className="flex-btn">
                                 <div className="btn" onClick={clearCache}>Clear</div>
                                 <div className="btn" onClick={showCacheModal}>Schedule</div>
@@ -171,8 +173,7 @@ const Tools = () => {
                         <div className="sm-container-title">
                             <h1 className="title">Restart PHP Engine</h1>
                             <p className="description">
-                                This is a React app that uses the Kinsta API to perform site tools (clear cache and restart PHP engine), without needing to access MyKinsta dashboard.
-                            </p>
+                                Restart your site's PHP engine now or schedule a specific date and time.                            </p>
                             <div className="flex-btn">
                                 <div className="btn" onClick={restartEngine}>Restart</div>
                                 <div className="btn" onClick={showPhpEngineModal}>Schedule</div>

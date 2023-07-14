@@ -63,7 +63,7 @@ const Home = () => {
                 <div className="container-title">
                     <h1 className="title">Site Tools Scheduler with Kinsta API</h1>
                     <p className="description">
-                        This is a React app that uses the Kinsta API to perform site tools (clear cache and restart PHP engine), without needing to access MyKinsta dashboard.
+                        This is a React app that uses the Kinsta API to perform maintenance tasks on your site (clear cache and restart PHP engine), without needing to access MyKinsta.
                     </p>
                 </div>
                 <form onSubmit={handleSubmission}>
